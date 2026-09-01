@@ -64,12 +64,13 @@ col4.metric("Avg Workforce Risk", f"{avg_risk}%")
 
 st.markdown("---")
 
-tab0, tab1, tab2, tab3, tab4 = st.tabs([
+tab0, tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "👤 Employee 360° Profile Lookup",
     "🎯 Custom Skill Gap & Career Engine",
     "🏢 Org Talent Strategy & Heatmap",
     "📖 HR Policy Knowledge RAG",
-    "🤖 Agentic Workflow Copilot"
+    "🤖 Agentic Workflow Copilot",
+    "📊 Model Comparison & Benchmarks"
 ])
 
 # Role-to-Skill & Career Path Mapping Matrix
@@ -295,3 +296,18 @@ with tab4:
     if st.button("Dispatch Agent"):
         res = orchestrator.route_and_execute(intent, {"query": intent})
         st.json(res)
+
+
+# ----------------- TAB 5: MODEL BENCHMARK COMPARISON -----------------
+with tab5:
+    st.subheader("📊 Algorithmic Benchmarks & Performance Evaluation")
+    st.markdown("Comparison across classical statistical models, tree ensembles, and deep neural architectures.")
+
+    if os.path.exists("models/attrition/model_benchmarks.csv"):
+        df_bench = pd.read_csv("models/attrition/model_benchmarks.csv")
+        st.dataframe(df_bench, use_container_width=True)
+
+        st.markdown("#### Evaluation Metric Comparison")
+        st.bar_chart(df_bench.set_index("Algorithm")[["Accuracy", "Recall", "F1-Score", "ROC-AUC"]])
+    else:
+        st.info("Run `python src/models/model_comparison.py` to generate the live benchmark table.")

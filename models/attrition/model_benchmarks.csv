@@ -1,0 +1,4 @@
+Algorithm,Accuracy,Precision,Recall,F1-Score,ROC-AUC,Architecture Type
+Logistic Regression (Linear Baseline),0.7619,0.3678,0.6809,0.4776,0.821,Linear Statistical
+Random Forest (Tree Ensemble),0.8367,0.4872,0.4043,0.4419,0.7941,Non-Linear Bagging
+Deep Neural Network (PyTorch MLP),0.8231,0.439,0.383,0.4091,0.739,Multi-Layer Perceptron
